@@ -20,7 +20,7 @@ function toggleVideo(wrapperElement) {
 function toggleMute(event, btnElement) {
     // Prevent the click from bubbling up to the video wrapper (which would pause it)
     event.stopPropagation();
-    
+
     const wrapper = btnElement.closest('.video-wrapper');
     const video = wrapper.querySelector('video');
     const icon = btnElement.querySelector('.mute-icon');
@@ -34,4 +34,25 @@ function toggleMute(event, btnElement) {
         icon.classList.remove('ph-speaker-high');
         icon.classList.add('ph-speaker-slash');
     }
+}
+
+// Copy Email Function
+function copyEmail(element) {
+    const email = element.innerText;
+    navigator.clipboard.writeText(email).then(() => {
+        showToast("Email copied to clipboard!");
+    });
+}
+
+// Show Toast Notification
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-message');
+    
+    toastMsg.innerText = message;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
 }
